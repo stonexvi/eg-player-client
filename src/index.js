@@ -32,7 +32,10 @@ const router = createBrowserRouter([
     },
     element: <Game/>,
   },
-]);
+], 
+{
+  basename: process.env.PUBLIC_URL,
+});
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
