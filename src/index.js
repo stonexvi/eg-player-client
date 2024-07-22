@@ -22,6 +22,8 @@ const router = createBrowserRouter([
       if (!params.gameId || !params.playerId) {
         return redirect('/')
       }
+
+      return null;
     },
     element: <Game/>,
   },

@@ -31,7 +31,7 @@ function Home() {
         <input
             type='text'
             id='gameIdInput'
-            maxLength='5'
+            maxLength='4'
             onChange={handleGameIdInputChange}
           />
         <label className='playerNameLabel' htmlFor='playerNameInput'>Name:</label>
