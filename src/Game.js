@@ -8,7 +8,9 @@ const gameSocketUrl = 'wss://gmmz97ol82.execute-api.us-east-1.amazonaws.com/prod
 function Game() {
   const { gameId, playerId } = useParams();
 
-  const socketUrl = `${gameSocketUrl}?gameId=${gameId}&clientType=player&clientId=${playerId}`;
+  const gameIdFormatted = gameId.toUpperCase();
+
+  const socketUrl = `${gameSocketUrl}?gameId=${gameIdFormatted}&clientType=player&clientId=${playerId}`;
   const [messageHistory, setMessageHistory] = useState([]);
 
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
@@ -29,7 +31,7 @@ function Game() {
     action: 'send-game-action',
     gameAction: {
       type: 'MOVE_CHARACTER',
-      direction: [0, 1],
+      direction: [Math.random(), Math.random()],
       characterId: 'koda',
     },
   })), []);
@@ -37,7 +39,7 @@ function Game() {
   if (readyState === ReadyState.OPEN) {
     return (
       <div className="game-container">
-        <button className="action-button" onClick={handleSendGameAction}>UP</button>
+        <button className="action-button" onClick={handleSendGameAction}>MOVE</button>
       </div>
     );
   } else {
