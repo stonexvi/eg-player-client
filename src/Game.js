@@ -25,7 +25,7 @@ function Game() {
     }
   }, [lastMessage]);
 
-  const handleClickSendMessage = useCallback(() => sendMessage(JSON.stringify({
+  const handleSendGameAction = useCallback(() => sendMessage(JSON.stringify({
     action: 'send-game-action',
     gameAction: {
       character: {
@@ -36,31 +36,19 @@ function Game() {
     },
   })), []);
 
-  const connectionStatus = {
-    [ReadyState.CONNECTING]: 'Connecting',
-    [ReadyState.OPEN]: 'Open',
-    [ReadyState.CLOSING]: 'Closing',
-    [ReadyState.CLOSED]: 'Closed',
-    [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
-  }[readyState];
-
-  return (
-    <div>
-      <button
-        onClick={handleClickSendMessage}
-        disabled={readyState !== ReadyState.OPEN}
-      >
-      UP
-      </button>
-      <span>The WebSocket is currently {connectionStatus}</span>
-      {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
-      <ul>
-        {messageHistory.map((message, idx) => (
-          <span key={idx}>{message ? message.data : null}</span>
-        ))}
-      </ul>
-    </div>
-  );
+  if (readyState === ReadyState.OPEN) {
+    return (
+      <div className="game-container">
+        <button className="action-button" onClick={handleSendGameAction}>UP</button>
+      </div>
+    );
+  } else {
+    return (
+      <div className="loading-container">
+        <div className="loading-animation">Loading...</div>
+      </div>
+    );
+  }
 };
 
 export default Game;
