@@ -28,11 +28,9 @@ function Game() {
   const handleSendGameAction = useCallback(() => sendMessage(JSON.stringify({
     action: 'send-game-action',
     gameAction: {
-      character: {
-        move: {
-          direction: 'UP',
-        },
-      },
+      type: 'MOVE_CHARACTER',
+      direction: [0, 1],
+      characterId: 'koda',
     },
   })), []);
 

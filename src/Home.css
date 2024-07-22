@@ -59,7 +59,6 @@ input[type='text'] {
 @media (max-width: 600px) {
   .container, .gameIdLabel, .playerNameLabel, input[type='text'], .join-game-button {
     font-size: 1.5em; /* Larger text for better readability on mobile */
-    margin: 10px 20px; /* Increased margin for better spacing */
   }
   input[type='text'] {
     max-width: calc(100% - 40px); /* Adjust max-width for mobile to ensure margins */
