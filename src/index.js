@@ -10,6 +10,8 @@ import {
 import Home from "./Home";
 import Game from "./Game";
 
+// Determine the base URL dynamically
+const baseUrl = process.env.PUBLIC_URL || '/';
 
 const router = createHashRouter([
   {
@@ -27,7 +29,7 @@ const router = createHashRouter([
     },
     element: <Game/>,
   },
-]);
+], { basename: baseUrl });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
