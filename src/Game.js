@@ -1,18 +1,18 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
+
+import OneButtonRandomProtocol from './protocols/OneButtonRandomProtocol';
+
 import './Game.css';
 
 const gameSocketUrl = 'wss://gmmz97ol82.execute-api.us-east-1.amazonaws.com/production/';
 
 function Game() {
   const { gameId, playerId } = useParams();
-
   const gameIdFormatted = gameId.toUpperCase();
 
   const socketUrl = `${gameSocketUrl}?gameId=${gameIdFormatted}&clientType=player&clientId=${playerId}`;
-  const [messageHistory, setMessageHistory] = useState([]);
-
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
 
   console.log('socket connection info:', {
@@ -20,27 +20,58 @@ function Game() {
     lastMessage,
     readyState,
   });
-
-  useEffect(() => {
-    if (lastMessage !== null) {
-      setMessageHistory((prev) => prev.concat(lastMessage));
-    }
-  }, [lastMessage]);
-
-  const handleSendGameAction = useCallback(() => sendMessage(JSON.stringify({
+  
+  const sendGameAction = useCallback((gameAction) => sendMessage(JSON.stringify({
     action: 'send-game-action',
-    gameAction: {
-      type: 'MOVE_CHARACTER',
-      direction: [Math.random(), Math.random()],
-      characterId: 'koda',
-    },
+    gameAction,
   })), []);
 
-  if (readyState === ReadyState.OPEN) {
+  const [playerProtocol, setPlayerProtocol] = useState(null);
+  
+  const updatePlayerProtocol = (protocol) => {
+    let updatedPlayerProtocol = null;
+
+    console.log('Updating Player Protocol:', protocol);
+
+    switch (protocol.type) {
+      case 'one-button-random':
+        updatedPlayerProtocol = <OneButtonRandomProtocol
+          sendGameAction={sendGameAction}
+          protocol={protocol}
+        />;
+        break;
+    }
+
+    console.log('Setting Player Protocol:', updatedPlayerProtocol);
+    
+    setPlayerProtocol(updatedPlayerProtocol);
+  }
+
+  useEffect(() => {
+    // JSON parse the last message as a protocol message
+    let protocol;
+    
+    if (lastMessage !== null) {
+      try {
+        protocol = JSON.parse(lastMessage.data);
+        console.log('Revceived Protocol: ', protocol);
+      } catch (error) {
+        console.error('Error parsing last message:', error);
+      }
+    }
+
+    if (protocol?.type) {
+      updatePlayerProtocol(protocol);
+    }
+
+  }, [lastMessage]);
+
+  if (
+    readyState === ReadyState.OPEN
+    && playerProtocol
+  ) {
     return (
-      <div className="game-container">
-        <button className="action-button" onClick={handleSendGameAction}>MOVE</button>
-      </div>
+      playerProtocol
     );
   } else {
     return (
