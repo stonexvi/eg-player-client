@@ -10,9 +10,6 @@ import {
 import Home from "./Home";
 import Game from "./Game";
 
-console.log('Public URL:', process.env.PUBLIC_URL);
-console.log('NODE_ENV:', process.env.NODE_ENV);
-
 // Determine the base URL dynamically
 const baseUrl = process.env.PUBLIC_URL || '/';
 
