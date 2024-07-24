@@ -3,6 +3,16 @@ body {
   font-size: 18px; /* Adjust as needed */
 }
 
+.playing-as {
+  margin: 5px;
+}
+
+.character-id {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 20px;
+}
+
 .game-container {
   display: flex;
   justify-content: center;

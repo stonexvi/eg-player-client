@@ -27,46 +27,33 @@ function Game() {
   })), [sendMessage]);
 
   const [playerProtocol, setPlayerProtocol] = useState(null);
-  
-  const updatePlayerProtocol = (protocol) => {
-    let updatedPlayerProtocol = null;
-
-    console.log('Updating Player Protocol:', protocol);
-
-    switch (protocol.type) {
-      case 'one-button-random':
-        updatedPlayerProtocol = <OneButtonRandomProtocol
-          sendGameAction={sendGameAction}
-          protocol={protocol}
-        />;
-        break;
-      default:
-        console.error('Unknown protocol type:', protocol.type);
-        break;
-    }
-
-    console.log('Setting Player Protocol:', updatedPlayerProtocol);
-    
-    setPlayerProtocol(updatedPlayerProtocol);
-  }
+  const [latestProtocol, setLatestProtocol] = useState(null);
 
   useEffect(() => {
     // JSON parse the last message as a protocol message
-    let protocol;
-    
     if (lastMessage !== null) {
       try {
-        protocol = JSON.parse(lastMessage.data);
+        const protocol = JSON.parse(lastMessage.data);
         console.log('Revceived Protocol: ', protocol);
+        setLatestProtocol(protocol);
+
+        console.log('Updating Player Protocol:', protocol);
+
+        switch (protocol?.type) {
+          case 'one-button-random':
+            setPlayerProtocol(<OneButtonRandomProtocol
+              sendGameAction={sendGameAction}
+              protocol={protocol}
+            />);
+            break;
+          default:
+            console.error('Unknown protocol type:', protocol.type);
+            break;
+        }
       } catch (error) {
         console.error('Error parsing last message:', error);
       }
     }
-
-    if (protocol?.type) {
-      updatePlayerProtocol(protocol);
-    }
-
   }, [lastMessage]);
 
   if (
@@ -74,7 +61,11 @@ function Game() {
     && playerProtocol
   ) {
     return (
-      playerProtocol
+      <div className='container'>
+        <h1 className='playing-as'>You're playing as...</h1>
+        <p className='character-id'>{ latestProtocol.characterId }</p>
+        { playerProtocol }
+      </div>
     );
   } else {
     return (
