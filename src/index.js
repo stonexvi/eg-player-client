@@ -3,17 +3,20 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
-  createHashRouter,
+  createBrowserRouter,
   RouterProvider,
   redirect,
 } from "react-router-dom";
 import Home from "./Home";
 import Game from "./Game";
 
+console.log('Public URL:', process.env.PUBLIC_URL);
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
 // Determine the base URL dynamically
 const baseUrl = process.env.PUBLIC_URL || '/';
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: '/',
     element: <Home/>,

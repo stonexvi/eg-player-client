@@ -24,7 +24,7 @@ function Game() {
   const sendGameAction = useCallback((gameAction) => sendMessage(JSON.stringify({
     action: 'send-game-action',
     gameAction,
-  })), []);
+  })), [sendMessage]);
 
   const [playerProtocol, setPlayerProtocol] = useState(null);
   
@@ -39,6 +39,9 @@ function Game() {
           sendGameAction={sendGameAction}
           protocol={protocol}
         />;
+        break;
+      default:
+        console.error('Unknown protocol type:', protocol.type);
         break;
     }
 

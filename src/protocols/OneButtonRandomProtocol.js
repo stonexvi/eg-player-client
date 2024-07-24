@@ -25,7 +25,7 @@ function OneButtonRandomProtocol({
     }
 
     return () => clearInterval(interval);
-  }, [buttonActions]);
+  }, [buttonActions, timed]);
 
   const handleSendGameAction = () => {
     sendGameAction(randomButtonState[1]);
