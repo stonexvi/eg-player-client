@@ -15,19 +15,8 @@ function Game() {
   const socketUrl = `${gameSocketUrl}?gameId=${gameIdFormatted}&clientType=player&clientId=${playerId}`;
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
 
-  console.log('socket connection info:', {
-    socketUrl,
-    lastMessage,
-    readyState,
-  });
-  
-  const sendGameAction = useCallback((gameAction) => sendMessage(JSON.stringify({
-    action: 'send-game-action',
-    gameAction,
-  })), [sendMessage]);
-
   const [playerProtocol, setPlayerProtocol] = useState(null);
-  const [latestProtocol, setLatestProtocol] = useState(null);
+  const [characterId, setCharacterId] = useState(null);
 
   useEffect(() => {
     // JSON parse the last message as a protocol message
@@ -35,7 +24,7 @@ function Game() {
       try {
         const protocol = JSON.parse(lastMessage.data);
         console.log('Revceived Protocol: ', protocol);
-        setLatestProtocol(protocol);
+        setCharacterId(protocol.characterId);
 
         console.log('Updating Player Protocol:', protocol);
 
@@ -56,15 +45,24 @@ function Game() {
     }
   }, [lastMessage]);
 
+  const sendGameAction = useCallback((gameAction) => sendMessage(JSON.stringify({
+    action: 'send-game-action',
+    characterId: characterId,
+    gameAction,
+  })), [sendMessage, characterId]);
+
   if (
     readyState === ReadyState.OPEN
     && playerProtocol
+    && characterId
   ) {
     return (
       <div className='container'>
         <h1 className='playing-as'>You're playing as...</h1>
-        <p className='character-id'>{ latestProtocol.characterId }</p>
-        { playerProtocol }
+        <p className='character-id'>{ characterId }</p>
+        <div className='game-container'>
+          { playerProtocol }
+        </div>
       </div>
     );
   } else {

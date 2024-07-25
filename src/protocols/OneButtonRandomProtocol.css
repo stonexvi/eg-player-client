@@ -1,40 +1,49 @@
-/* Increase base font size for better readability */
-body {
-  font-size: 18px; /* Adjust as needed */
-}
-
-.game-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.action-button {
-  width: 60vw;
-  height: 60vw;
-  max-width: 300px; /* Adjust based on your needs */
-  max-height: 300px; /* Adjust based on your needs */
-  font-size: 2rem;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.loading-animation {
-  /* Minimal loading animation styles */
-}
-
-/* Ensure the button is square and centered on mobile */
-@media (max-width: 600px) {
-  .action-button {
-    width: 60%;
-    height: 60%;
+@keyframes buttonPressedAnimation {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -320px; /* Assuming the sprite sheet contains frames placed horizontally */
   }
 }
+
+@keyframes buttonReleasedAnimation {
+  from {
+    background-position: -320px;
+  }
+  to {
+    background-position: -640px; /* Assuming the sprite sheet contains frames placed horizontally */
+  }
+}
+
+.sprite-button {
+  width: 160px; /* Width of a single frame */
+  height: 160px; /* Height of the sprite */
+  background-color: transparent; /* Remove default background color */
+  border: none;
+  background-repeat: no-repeat;
+}
+
+.sprite-button-pressed {
+  animation: buttonPressedAnimation 0.2s steps(2) forwards;
+}
+
+.sprite-button-released {
+  animation: buttonReleasedAnimation 0.2s steps(2) forwards;
+}
+
+.sprite-button-move-left {
+  background-image: url('../sprites/button-move-left.png');
+} 
+
+.sprite-button-move-right {
+  background-image: url('../sprites/button-move-right.png');
+} 
+
+.sprite-button-move-up {
+  background-image: url('../sprites/button-move-up.png');
+} 
+
+.sprite-button-move-down {
+  background-image: url('../sprites/button-move-down.png');
+} 

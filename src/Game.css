@@ -1,14 +1,10 @@
-/* Increase base font size for better readability */
-body {
-  font-size: 18px; /* Adjust as needed */
-}
-
 .playing-as {
   margin: 5px;
+  font-size: 35px;
 }
 
 .character-id {
-  font-size: 3rem;
+  font-size: 50px;
   font-weight: bold;
   margin: 20px;
 }
@@ -17,17 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-}
-
-.action-button {
-  width: 60vw;
-  height: 60vw;
-  max-width: 300px; /* Adjust based on your needs */
-  max-height: 300px; /* Adjust based on your needs */
-  font-size: 2rem;
-  border-radius: 10px;
-  cursor: pointer;
+  margin-top: 50px
 }
 
 .loading-container {
@@ -35,16 +21,4 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-
-.loading-animation {
-  /* Minimal loading animation styles */
-}
-
-/* Ensure the button is square and centered on mobile */
-@media (max-width: 600px) {
-  .action-button {
-    width: 60%;
-    height: 60%;
-  }
 }
