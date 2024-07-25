@@ -74,7 +74,7 @@ function OneButtonRandomProtocol({
     console.log('Sending Game Action:', randomButtonAction);
 
     // send the game
-    sendGameAction(randomButtonAction);
+    sendGameAction(protocol.characterId, randomButtonAction);
 
     // reset button state
     setRandomButtonState();

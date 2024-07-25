@@ -45,11 +45,15 @@ function Game() {
     }
   }, [lastMessage]);
 
-  const sendGameAction = useCallback((gameAction) => sendMessage(JSON.stringify({
-    action: 'send-game-action',
-    characterId: characterId,
-    gameAction,
-  })), [sendMessage, characterId]);
+  const sendGameAction = (characterId, gameAction) => {
+    sendMessage(
+      JSON.stringify({
+        action: 'send-game-action',
+        characterId,
+        gameAction
+      })
+    );
+  };
 
   if (
     readyState === ReadyState.OPEN
