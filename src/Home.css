@@ -48,19 +48,11 @@ input[type='text'] {
   background-color: #0056b3; /* Darker button color on hover */
 }
 
-/* Ensure elements are not too small on mobile */
-@media (max-width: 600px) {
-  .container, .gameIdLabel, .playerNameLabel, input[type='text'], .join-game-button {
-    font-size: 1.5em; /* Even larger text for mobile */
-  }
+
+.container, .gameIdLabel, .playerNameLabel, input[type='text'], .join-game-button {
+  font-size: 1.5em; /* Even larger text for mobile */
 }
 
-/* Responsive adjustments for mobile devices */
-@media (max-width: 600px) {
-  .container, .gameIdLabel, .playerNameLabel, input[type='text'], .join-game-button {
-    font-size: 1.5em; /* Larger text for better readability on mobile */
-  }
-  input[type='text'] {
-    max-width: calc(100% - 40px); /* Adjust max-width for mobile to ensure margins */
-  }
+input[type='text'] {
+  max-width: calc(100% - 40px); /* Adjust max-width for mobile to ensure margins */
 }

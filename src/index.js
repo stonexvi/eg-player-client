@@ -3,7 +3,7 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
   redirect,
 } from "react-router-dom";
@@ -13,7 +13,7 @@ import Game from "./Game";
 // Determine the base URL dynamically
 const baseUrl = process.env.PUBLIC_URL || '/';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: <Home/>,
