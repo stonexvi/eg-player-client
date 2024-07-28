@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './OneButtonRandomProtocol.css';
+import './OneButtonProtocol.css';
 
 const actionTypeToSprite = {
   'move-left': 'sprite-button-move-left',
@@ -8,14 +8,14 @@ const actionTypeToSprite = {
   'move-down': 'sprite-button-move-down',
 };
 
-function OneButtonRandomProtocol({ 
+function OneButtonProtocol({ 
   sendGameAction,
   protocol,
 }) {
   // get custom info from the protocol object
   const {
-    buttonActions,
-    timed,
+    buttonActions = {},
+    timed = false,
   } = protocol;
 
   const getRandomButtonState = () => {
@@ -87,4 +87,4 @@ function OneButtonRandomProtocol({
   );
 };
 
-export default OneButtonRandomProtocol;
+export default OneButtonProtocol;

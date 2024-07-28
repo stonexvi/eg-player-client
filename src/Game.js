@@ -2,7 +2,9 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
-import OneButtonRandomProtocol from './protocols/OneButtonRandomProtocol';
+// protocols
+import OneButtonProtocol from './protocols/OneButtonProtocol';
+import FourButtonProtocol from './protocols/FourButtonProtocol';
 
 import './Game.css';
 
@@ -29,8 +31,13 @@ function Game() {
         console.log('Updating Player Protocol:', protocol);
 
         switch (protocol?.type) {
-          case 'one-button-random':
-            setPlayerProtocol(<OneButtonRandomProtocol
+          case 'one-button':
+            setPlayerProtocol(<OneButtonProtocol
+              sendGameAction={sendGameAction}
+              protocol={protocol}
+            />);
+          case 'four-button':
+            setPlayerProtocol(<FourButtonProtocol
               sendGameAction={sendGameAction}
               protocol={protocol}
             />);
