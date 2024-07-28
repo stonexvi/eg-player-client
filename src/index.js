@@ -11,7 +11,7 @@ import Home from "./Home";
 import Game from "./Game";
 
 // Determine the base URL dynamically
-const baseUrl = process.env.PUBLIC_URL || '/';
+const baseUrl = process.env.PUBLIC_URL || '/eg-player-web-client';
 
 const router = createHashRouter([
   {
