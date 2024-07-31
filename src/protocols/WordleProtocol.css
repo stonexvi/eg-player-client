@@ -1,0 +1,82 @@
+/* .wordle-protocol-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wordle-input-container {
+  margin-bottom: 20px;
+}
+
+.wordle-input-box {
+  width: 240px;
+  height: 40px;
+  text-align: center;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.wordle-boxes-container {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.wordle-box {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.wordle-submit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+} */
+
+.wordle-protocol-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wordle-input-container {
+  margin-bottom: 20px;
+}
+
+.wordle-hidden-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wordle-boxes-container {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  cursor: pointer;
+}
+
+.wordle-box {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  font-size: 24px;
+  text-transform: uppercase;
+  touch-action: manipulation; /* Ensures touch events are handled correctly */
+}
+
+.wordle-submit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer; /* Ensures the button is clickable on touch devices */
+}

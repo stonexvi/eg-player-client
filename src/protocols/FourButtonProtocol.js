@@ -21,26 +21,54 @@ function FourButtonProtocol({
   return (
     <div className="protocol-container">
       <div>
-        <OneButtonProtocol
-          sendGameAction={getSendGameActionForButton(0)}
-          protocol={buttons[0]}
-        />
+        { 
+          buttons.length >= 1
+          && <OneButtonProtocol
+              sendGameAction={getSendGameActionForButton(0)}
+              protocol={buttons[0]}
+            />
+        }
       </div>
       <div className='middle-button-container'>
-        <OneButtonProtocol
-          sendGameAction={getSendGameActionForButton(1)}
-          protocol={buttons[1]}
-        />
-        <OneButtonProtocol
-          sendGameAction={getSendGameActionForButton(2)}
-          protocol={buttons[2]}
-        />
+      { 
+          buttons.length >= 2
+          && <OneButtonProtocol
+              sendGameAction={getSendGameActionForButton(1)}
+              protocol={buttons[1]}
+            />
+        }
+        { 
+          buttons.length >= 3
+          && <OneButtonProtocol
+              sendGameAction={getSendGameActionForButton(2)}
+              protocol={buttons[2]}
+            />
+        }
       </div>
       <div>
-        <OneButtonProtocol
-          sendGameAction={getSendGameActionForButton(3)}
-          protocol={buttons[3]}
-        />
+        { 
+            buttons.length >= 4
+            && <OneButtonProtocol
+                sendGameAction={getSendGameActionForButton(3)}
+                protocol={buttons[3]}
+            />
+        }
+      </div>
+      <div className='bottom-bottom-container'>
+        { 
+            buttons.length >= 5
+            && <OneButtonProtocol
+                sendGameAction={getSendGameActionForButton(4)}
+                protocol={buttons[4]}
+            />
+        }
+        { 
+            buttons.length >= 6
+            && <OneButtonProtocol
+                sendGameAction={getSendGameActionForButton(5)}
+                protocol={buttons[5]}
+            />
+        }
       </div>
     </div>
   );

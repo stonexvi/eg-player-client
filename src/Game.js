@@ -6,6 +6,8 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 import OneButtonProtocol from './protocols/OneButtonProtocol';
 import FourButtonProtocol from './protocols/FourButtonProtocol';
 
+import WordleProtocol from './protocols/WordleProtocol';
+
 import './Game.css';
 
 const gameSocketUrl = 'wss://gmmz97ol82.execute-api.us-east-1.amazonaws.com/production/';
@@ -38,6 +40,12 @@ function Game() {
             />);
           case 'four-button':
             setPlayerProtocol(<FourButtonProtocol
+              sendGameAction={sendGameAction}
+              protocol={protocol}
+            />);
+            break;
+          case 'wordle':
+            setPlayerProtocol(<WordleProtocol
               sendGameAction={sendGameAction}
               protocol={protocol}
             />);

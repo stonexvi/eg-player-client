@@ -11,7 +11,9 @@ import Home from "./Home";
 import Game from "./Game";
 
 // Determine the base URL dynamically
-const baseUrl = process.env.PUBLIC_URL || '/eg-player-web-client';
+const baseUrl = process.env.PUBLIC_URL || '/';
+console.log('BASE URL IS: ', baseUrl);
+console.log('PUBLIC URL IS: ', process.env.PUBLIC_URL);
 
 const router = createHashRouter([
   {
@@ -28,6 +30,10 @@ const router = createHashRouter([
       return null;
     },
     element: <Game/>,
+  },
+  {
+    path: '*',
+    element: <div>Page Not Found</div>,
   },
 ], { basename: baseUrl });
 

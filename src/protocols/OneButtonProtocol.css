@@ -3,22 +3,22 @@
     background-position: 0px;
   }
   to {
-    background-position: -320px; /* Assuming the sprite sheet contains frames placed horizontally */
+    background-position: -210px; /* Assuming the sprite sheet contains frames placed horizontally */
   }
 }
 
 @keyframes buttonReleasedAnimation {
   from {
-    background-position: -320px;
+    background-position: -210px;
   }
   to {
-    background-position: -640px; /* Assuming the sprite sheet contains frames placed horizontally */
+    background-position: -420px; /* Assuming the sprite sheet contains frames placed horizontally */
   }
 }
 
 .sprite-button {
-  width: 160px; /* Width of a single frame */
-  height: 160px; /* Height of the sprite */
+  width: 105px; /* Width of a single frame */
+  height: 120px; /* Height of the sprite */
   background-color: transparent; /* Remove default background color */
   border: none;
   background-repeat: no-repeat;
@@ -41,7 +41,7 @@
 } 
 
 .sprite-button-move-up {
-  background-image: url('../sprites/button-move-up.png');
+  background-image: url('../sprites/button-move-up-small.png');
 } 
 
 .sprite-button-move-down {
