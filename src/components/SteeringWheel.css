@@ -1,0 +1,14 @@
+/* SteeringWheel.css */
+.steering-wheel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.steering-wheel {
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  user-select: none;
+}

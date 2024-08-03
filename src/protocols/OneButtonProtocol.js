@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { ReactComponent as Arrow } from '../svg/Arrow.svg';
 import './OneButtonProtocol.css';
 
 const actionTypeToSprite = {
-  'move-left': 'sprite-button-move-left',
-  'move-right': 'sprite-button-move-right',
-  'move-up': 'sprite-button-move-up',
-  'move-down': 'sprite-button-move-down',
+  'move-left': <Arrow className='sprite-arrow-left'/>,
+  'move-right': <Arrow className='sprite-arrow-right'/>,
+  'move-up': <Arrow className='sprite-arrow-up'/>,
+  'move-down': <Arrow className='sprite-arrow-down'/>,
+  'press-gas': <Arrow className='sprite-arrow-left'/>,
 };
 
 function OneButtonProtocol({ 
@@ -18,24 +20,23 @@ function OneButtonProtocol({
     timed = false,
   } = protocol;
 
-  const getRandomButtonState = () => {
-    // get a random button state
+  const getButtonState = () => {
+    // get a  button state
     const actionTypes = Object.keys(buttonActions);
     const actionType = actionTypes[Math.floor(Math.random() * actionTypes.length)];
     const gameAction = buttonActions[actionType];
     const sprite = actionTypeToSprite[actionType];
 
-    // get the random state
+    // get the  state
     return {
       gameAction,
       sprite,
     }
   };
 
-  const initialRandomButtonState = getRandomButtonState();
-  const [randomButtonAction, setRandomButtonAction] = useState(initialRandomButtonState.gameAction);
-  const [randomButtonSprite, setRandomButtonSprite] = useState(initialRandomButtonState.sprite);
-  const [buttonAnimation, setButtonAnimation] = useState(initialRandomButtonState.sprite);
+  const initialButtonState = getButtonState();
+  const [buttonAction, setButtonAction] = useState(initialButtonState.gameAction);
+  const [buttonSprite, setButtonSprite] = useState(initialButtonState.sprite);
 
   // change the randmButtonState every 2 seconds
   useEffect(() => {
@@ -43,46 +44,42 @@ function OneButtonProtocol({
 
     if (timed) {
       interval = setInterval(() => {
-        setRandomButtonState();
+        setButtonState();
       }, 2000);
     }
 
     return () => clearInterval(interval);
   }, [buttonActions, timed]);
 
-  const setRandomButtonState = () => {
-    // get a random button state
+  const setButtonState = () => {
+    // get a  button state
     const {
       gameAction,
       sprite,
-    } = getRandomButtonState();
+    } = getButtonState();
 
-    console.log('Setting Random Button State:', {gameAction, sprite});
+    console.log('Setting  Button State:', {gameAction, sprite});
     
     // set the button state
-    setRandomButtonAction(gameAction);
-    setRandomButtonSprite(sprite);
+    setButtonAction(gameAction);
+    setButtonSprite(sprite);
   };
 
-  const handleButtonPressed = () => {
-    setButtonAnimation('sprite-button-pressed');
-  }
-
   const handleButtonReleased = () => {
-    setButtonAnimation('sprite-button-released');
-
-    console.log('Sending Game Action:', randomButtonAction);
+    console.log('Sending Game Action:', buttonAction);
 
     // send the game
-    sendGameAction(protocol.characterId, randomButtonAction);
+    sendGameAction(protocol.characterId, buttonAction);
 
     // reset button state
-    setRandomButtonState();
+    setButtonState();
   };
 
   return (
     <div className="protocol-container">
-      <button className={`sprite-button ${buttonAnimation} ${randomButtonSprite}`} onTouchStart={handleButtonPressed} onTouchEnd={handleButtonReleased} ></button>
+      <div className="sprite-button" onTouchEnd={handleButtonReleased}>
+        { buttonSprite }
+      </div>
     </div>
   );
 };

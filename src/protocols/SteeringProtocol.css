@@ -17,19 +17,13 @@
 }
 
 .sprite-button {
-  width: 20vw; /* 20% of the viewport width */
-  height: auto; /* Maintain aspect ratio */
-  padding: 0; /* Remove padding */
+  width: 20vw; /* 40% of the viewport width */
+  height: 0; /* Maintain aspect ratio */
+  padding-bottom: 100%;
   background-color: transparent; /* Remove default background color */
-  border: none; /* Remove border */
-  display: flex; /* Use flexbox to center the SVG */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-}
-
-.sprite-button svg {
-  width: 100%; /* Make the SVG take up the full width of the button */
-  height: auto; /* Maintain aspect ratio */
+  border: none;
+  background-repeat: no-repeat;
+  background-image: url('../svg/arrow-left-bold.svg');
 }
 
 .sprite-button-pressed {
@@ -40,26 +34,18 @@
   animation: buttonReleasedAnimation 0.2s steps(2) forwards;
 }
 
-.sprite-arrow-left {
+.sprite-button-move-left {
   /* do nothing */
 } 
-
-.sprite-arrow-right {
+.sprite-button-move-right {
   /* rotate the SVG 180 degrees */
   transform: rotate(180deg);
 }   
-
-.sprite-arrow-up {
+.sprite-button-move-up {
   /* rotate the SVG 90 degrees */
   transform: rotate(90deg);
 }
-
-.sprite-arrow-down {
-  /* rotate the SVG -90 degrees */
-  transform: rotate(-90deg);
-}
-
-.sprite-button-press-gas {
+.sprite-button-move-down {
   /* rotate the SVG -90 degrees */
   transform: rotate(-90deg);
 }

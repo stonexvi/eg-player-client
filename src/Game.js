@@ -5,6 +5,7 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 // protocols
 import OneButtonProtocol from './protocols/OneButtonProtocol';
 import FourButtonProtocol from './protocols/FourButtonProtocol';
+import SteeringProtocol from './protocols/SteeringProtocol';
 
 import WordleProtocol from './protocols/WordleProtocol';
 
@@ -38,6 +39,7 @@ function Game() {
               sendGameAction={sendGameAction}
               protocol={protocol}
             />);
+            break;
           case 'four-button':
             setPlayerProtocol(<FourButtonProtocol
               sendGameAction={sendGameAction}
@@ -46,6 +48,12 @@ function Game() {
             break;
           case 'wordle':
             setPlayerProtocol(<WordleProtocol
+              sendGameAction={sendGameAction}
+              protocol={protocol}
+            />);
+            break;
+          case 'steering':
+            setPlayerProtocol(<SteeringProtocol
               sendGameAction={sendGameAction}
               protocol={protocol}
             />);
