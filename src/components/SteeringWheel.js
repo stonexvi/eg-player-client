@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './SteeringWheel.css';
 
-function SteeringWheel({ onSteer }) {
+function SteeringWheel({ onSteer, range }) {
   const [angle, setAngle] = useState(0);
   const wheelRef = useRef(null);
 
@@ -15,7 +15,18 @@ function SteeringWheel({ onSteer }) {
       const touch = e.touches[0];
       const dx = touch.clientX - centerX;
       const dy = touch.clientY - centerY;
-      const newAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+      let newAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+      // Adjust the angle to make -90 degrees the new 0 degrees
+      newAngle += 90;
+
+      // Clamp the newAngle within the range
+      if (newAngle > range) {
+        newAngle = range;
+      } else if (newAngle < -range) {
+        newAngle = -range;
+      }
+
       setAngle(newAngle);
       onSteer(newAngle);
     };

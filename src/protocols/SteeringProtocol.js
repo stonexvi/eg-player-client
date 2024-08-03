@@ -21,7 +21,7 @@ function SteerProtocol({ sendGameAction, protocol }) {
 
   return (
     <div className="protocol-container">
-      <SteeringWheel onSteer={handleSteer} />
+      <SteeringWheel onSteer={handleSteer} range={65}/>
     </div>
   );
 }
