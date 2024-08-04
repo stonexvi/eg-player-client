@@ -4,7 +4,7 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 // protocols
 import OneButtonProtocol from './protocols/OneButtonProtocol';
-import FourButtonProtocol from './protocols/FourButtonProtocol';
+import MultiButtonProtocol from './protocols/MultiButtonProtocol';
 import SteeringProtocol from './protocols/SteeringProtocol';
 
 import WordleProtocol from './protocols/WordleProtocol';
@@ -16,8 +16,9 @@ const gameSocketUrl = 'wss://gmmz97ol82.execute-api.us-east-1.amazonaws.com/prod
 function Game() {
   const { gameId, playerId } = useParams();
   const gameIdFormatted = gameId.toUpperCase();
+  const playerIdFormatted = playerId.toUpperCase();
 
-  const socketUrl = `${gameSocketUrl}?gameId=${gameIdFormatted}&clientType=player&clientId=${playerId}`;
+  const socketUrl = `${gameSocketUrl}?gameId=${gameIdFormatted}&clientType=player&clientId=${playerIdFormatted}`;
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
 
   const [playerProtocol, setPlayerProtocol] = useState(null);
@@ -40,8 +41,8 @@ function Game() {
               protocol={protocol}
             />);
             break;
-          case 'four-button':
-            setPlayerProtocol(<FourButtonProtocol
+          case 'multi-button':
+            setPlayerProtocol(<MultiButtonProtocol
               sendGameAction={sendGameAction}
               protocol={protocol}
             />);

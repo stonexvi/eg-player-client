@@ -7,7 +7,12 @@ const actionTypeToSprite = {
   'move-right': <Arrow className='sprite-arrow-right'/>,
   'move-up': <Arrow className='sprite-arrow-up'/>,
   'move-down': <Arrow className='sprite-arrow-down'/>,
+  'jump':  <img src='/sprites/jump-small.png' className='sprite-img'/>,
   'press-gas': <Arrow className='sprite-arrow-left'/>,
+  'interact-a': <img src='/sprites/a-button-sprite-little.png' className='sprite-img'/>,
+  'interact-b': <img src='/sprites/b-button-sprite-little.png' className='sprite-img'/>,
+  'gadget-wings': <img src='/sprites/a-button-sprite-little.png' className='sprite-img'/>,
+  'gadget-floaties': <img src='/sprites/b-button-sprite-little.png' className='sprite-img'/>,
 };
 
 function OneButtonProtocol({ 

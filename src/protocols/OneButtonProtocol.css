@@ -17,7 +17,7 @@
 }
 
 .sprite-button {
-  width: 20vw; /* 20% of the viewport width */
+  width: 30vw; /* 20% of the viewport width */
   height: auto; /* Maintain aspect ratio */
   padding: 0; /* Remove padding */
   background-color: transparent; /* Remove default background color */

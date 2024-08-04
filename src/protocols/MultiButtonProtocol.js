@@ -1,5 +1,5 @@
 import React from 'react';
-import './FourButtonProtocol.css';
+import './MultiButtonProtocol.css';
 import OneButtonProtocol from './OneButtonProtocol';
 
 function FourButtonProtocol({ 
@@ -10,6 +10,8 @@ function FourButtonProtocol({
   const {
     buttons,
   } = protocol;
+  
+  console.log('PROTOCOL: ', protocol)
 
   const getSendGameActionForButton = (buttonId) => {
     return (...args) => {
